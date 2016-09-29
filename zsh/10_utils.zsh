@@ -13,25 +13,6 @@ export DYLD_FALLBACK_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/local/lib
 #
 # set prompt
 #
-autoload colors
-colors
-case ${UID} in
-0)
-    PROMPT="%B%{${fg[green]}%}%/#%{${reset_color}%}%b "
-    PROMPT2="%B%{${fg[green]}%}%_#%{${reset_color}%}%b "
-    SPROMPT="%B%{${fg[green]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-    ;;
-*)
-    PROMPT="%{${fg[green]}%}%/%%%{${reset_color}%} "
-    PROMPT2="%{${fg[green]}%}%_%%%{${reset_color}%} "
-    SPROMPT="%{${fg[green]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-    ;;
-esac
-
 # auto change directory
 #
 setopt auto_cd
@@ -84,12 +65,12 @@ setopt hist_ignore_dups     # ignore duplication command history list
 setopt share_history        # share command history data
 
 
-## Completion configuration
-#
-fpath=(~/.zsh/functions/Completion ${fpath})
-autoload -U compinit
-compinit
-
+# zsh-completionsを利用する Github => zsh-completions  
+fpath=(~/.zsh/zsh-completions/src $fpath)
+autoload -U compinit;compinit
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                             /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin \
+                             /usr/local/git/bin
 
 ## zsh editor
 #
@@ -108,37 +89,6 @@ autoload zed
 #
 setopt complete_aliases     # aliased ls needs if file/dir completions work
 
-alias where="command -v"
-alias j="jobs -l"
-
-case "${OSTYPE}" in
-freebsd*|darwin*)
-    alias ls="ls -G -w"
-    ;;
-linux*)
-    alias ls="ls --color"
-    ;;
-esac
-
-alias la="ls -a"
-alias lf="ls -F"
-alias ll="ls -l"
-
-alias du="du -h"
-alias df="df -h"
-
-alias su="su -l"
-
-#alias g++="/opt/local/bin/g++"
-#alias gcc="/opt/local/bin/gcc"
-alias reload="source ~/.zshrc"
-alias init-docker="source ~/.docker_profile"
-alias cwork="cd /Users/sumiya/Documents/workspace/"
-alias athene="ssh tohyama@athene.ci.seikei.ac.jp"
-alias ubuntu="ssh sumiya@192.168.11.52"
-alias naskof="ssh sumiya@192.168.11.50"
-alias tmux-list="tmux list-session"
-alias tmux-attach="tmux attach-session -t"
 
 case "${OSTYPE}" in
 darwin*)
@@ -163,42 +113,6 @@ freebsd*)
         alias appsupgrade='pkgdb -F && BATCH=YES NO_CHECKSUM=YES portupgrade -a'
         ;;
     esac
-    ;;
-esac
-
-
-## terminal configuration
-#
-unset LSCOLORS
-case "${TERM}" in
-xterm)
-    export TERM=xterm-color
-    ;;
-kterm)
-    export TERM=kterm-color
-    # set BackSpace control character
-    stty erase
-    ;;
-cons25)
-    unset LANG
-    export LSCOLORS=ExFxCxdxBxegedabagacad
-    export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-    zstyle ':completion:*' list-colors \
-        'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
-    ;;
-esac
-
-# set terminal title including current directory
-#
-case "${TERM}" in
-kterm*|xterm*)
-    precmd() {
-        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-    }
-    export LSCOLORS=exfxcxdxbxegedabagacad
-    export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-    zstyle ':completion:*' list-colors \
-        'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
     ;;
 esac
 

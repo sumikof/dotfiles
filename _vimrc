@@ -6,3 +6,5 @@ for file in filelist
     execute ':source ' . file
   endif
 endfor
+
+syntax on

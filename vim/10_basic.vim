@@ -1,4 +1,3 @@
-syntax on
 
 " 画面表示の設定
 set number         " 行番号を表示する

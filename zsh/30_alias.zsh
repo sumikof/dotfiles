@@ -31,6 +31,8 @@ alias naskof="ssh sumiya@192.168.11.50"
 alias tmux-list="tmux list-session"
 alias tmux-attach="tmux attach-session -t"
 
+alias packer="~/bin/packer"
+
 ## load user .zshrc configuration file
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine

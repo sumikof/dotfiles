@@ -32,7 +32,6 @@ export PATH=$PATH:$HOME/bin:/sbin/:/usr/sbin
 
 #prompt with coloring hostname
 
-alias vi='vim'
 
 #with coloring and long format
 

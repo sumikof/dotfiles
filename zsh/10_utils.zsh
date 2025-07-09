@@ -6,7 +6,7 @@
 #
 export LANG=ja_JP.UTF-8
 export ANT_HOME=/usr/local/ant/
-export PATH=:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/usr/local/gclient:/opt/local/sbin:$ANT_HOME/bin
+#export PATH=:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/usr/local/gclient:/opt/local/sbin:$ANT_HOME/bin
 export DYLD_FALLBACK_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/local/lib
 #export INCLUDE_PATH=/opt/local/include
 ## Default shell configuration

@@ -20,3 +20,5 @@ case ${OSTYPE} in
     fi
     ;;
 esac
+
+source <(kubectl completion zsh)

@@ -10,6 +10,7 @@ export ANT_HOME=/usr/local/ant/
 export DYLD_FALLBACK_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/local/lib
 #export INCLUDE_PATH=/opt/local/include
 ## Default shell configuration
+export KUBECONFIG=~/.kube/kubeconfig
 #
 # set prompt
 #

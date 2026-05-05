@@ -21,4 +21,4 @@ case ${OSTYPE} in
     ;;
 esac
 
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)

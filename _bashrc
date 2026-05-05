@@ -36,3 +36,5 @@ export PATH=$PATH:$HOME/bin:/sbin/:/usr/sbin
 #with coloring and long format
 
 export PS1="[\[\e[1;34m\]\u\[\e[00m\]@\h:\W]\$ "
+
+alias claude-mem='bun "/home/ubuntu/.claude/plugins/cache/thedotmack/claude-mem/12.1.3/scripts/worker-service.cjs"'
